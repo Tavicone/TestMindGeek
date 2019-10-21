@@ -3,18 +3,33 @@
 namespace App\Http\Controllers;
 
 use App\Services\ParseJsonFile;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
 
-    function homepage(ParseJsonFile $jsonParser) {
+    /**
+     * Display movie list
+     *
+     * @param ParseJsonFile $jsonParser
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    function homepage(ParseJsonFile $jsonParser)
+    {
         $items = $jsonParser->getJsonFromUrl();
 
         return view('home', ['items' => $items]);
     }
 
-    function showMovieDetails(ParseJsonFile $jsonParser) {
+    /**
+     * Display movie details
+     *
+     * @param ParseJsonFile $jsonParser
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    function showMovieDetails(ParseJsonFile $jsonParser)
+    {
         $movieKey = request('movie_id');
         $items = $jsonParser->getJsonFromUrl();
 
@@ -23,7 +38,15 @@ class PageController extends Controller
         return view('movie', ['movieDetails' => $items[$movieKey], 'duration' => $transformedDuration]);
     }
 
-    function convertToHoursMins($time, $format = '%02d:%02d') {
+    /**
+     * Format duration time into more readable way
+     *
+     * @param $time
+     * @param string $format
+     * @return string|void
+     */
+    function convertToHoursMins($time, $format = '%02d:%02d')
+    {
         if ($time < 1) {
             return;
         }

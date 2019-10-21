@@ -26,7 +26,7 @@ class ImageStoreTest extends TestCase
 
         ImageStore::getImageFromUrl($validImageUrl);
 
-        Storage::disk('public')->assertExists($hasedImage.'.'.$extension);
+        Storage::disk('public')->assertExists($hasedImage . '.' . $extension);
 
         // Assert one invalid image is not stored...
         $invalidImageUrl = 'https://mgtechtest.blob.core.windows.net/images/unscaled/2013/07/15/LPA-Parental-guidance.jpg';
@@ -36,6 +36,6 @@ class ImageStoreTest extends TestCase
 
         ImageStore::getImageFromUrl($invalidImageUrl);
 
-        Storage::disk('public')->assertMissing($hasedImage.'.'.$extension);
+        Storage::disk('public')->assertMissing($hasedImage . '.' . $extension);
     }
 }

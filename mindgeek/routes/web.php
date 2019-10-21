@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'PageController@homepage');
+
+Route::get('/movie/{movie_id}', 'PageController@showMovieDetails');

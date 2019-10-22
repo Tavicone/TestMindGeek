@@ -4,24 +4,26 @@
     <!-- Main Info -->
     <div class="container">
         <a href="\" class="btn btn-primary btn-sm mt-1">Back to list</a>
-        <h1 class="text-center font-weight-bold">{{ $movieDetails['headline'] }}</h1>
-        <h3 class="text-center">({{$movieDetails['year']}})</h3>
+        <h1 class="text-center font-weight-bold">{{ $movieDetails['headline'] ?? ''}}</h1>
+        <h3 class="text-center">({{$movieDetails['year'] ?? ''}})</h3>
         <div class="row">
             <div class="col-12">
-                {{ $movieDetails['synopsis'] }}
+                {{ $movieDetails['synopsis'] ?? ''}}
             </div>
             <div class="col-12 mb-1 mt-3">
-                <span class="font-weight-bold mr-3">Director: </span> {{ $movieDetails['directors'][0]['name'] }}
+                <span class="font-weight-bold mr-3">Director: </span> {{ $movieDetails['directors'][0]['name'] ?? ''}}
             </div>
             <div class="col-12">
                 <span class="font-weight-bold mr-3">Duration: </span>
-                {{$duration}}
-                <span class="font-weight-bold mr-3 ml-5">Genres: </span>
-                @foreach($movieDetails['genres'] as $genre)
-                    <span>{{ $genre }},</span>
-                @endforeach
+                {{ gmdate("H:i:s", $movieDetails['duration']) ?? ''}}
+                @if (isset($movieDetails['genres']))
+                    <span class="font-weight-bold mr-3 ml-5">Genres: </span>
+                    @foreach($movieDetails['genres'] as $genre)
+                        <span>{{ $genre }},</span>
+                    @endforeach
+                @endif
                 <span class="font-weight-bold mr-3 ml-5">Rating: </span>
-                {{ $movieDetails['rating'] }}
+                {{ $movieDetails['rating'] ?? 'No rating'}}
             </div>
             <div class="col-12 mb-3">
                 <span class="font-weight-bold mr-3">Casting: </span>
@@ -41,7 +43,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <a href="#" class="d-block mb-4 h-100">
                         <img class="img-fluid img-thumbnail"
-                             src="{{App\Libraries\ImageStore::getImageFromUrl($keyImage['url'])}}" alt="">
+                             src="{{ App\Libraries\ImageStore::getImageFromUrl($keyImage['url']) }}" alt="">
                     </a>
                 </div>
             @endforeach
@@ -49,7 +51,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <a href="#" class="d-block mb-4 h-100">
                         <img class="img-fluid img-thumbnail"
-                             src="{{App\Libraries\ImageStore::getImageFromUrl($image['url'])}}" alt="">
+                             src="{{ App\Libraries\ImageStore::getImageFromUrl($image['url']) }}" alt="">
                     </a>
                 </div>
             @endforeach
@@ -62,7 +64,7 @@
 
         <div class="row text-center text-lg-left mb-5">
             <div class="col-12">
-                {{ $movieDetails['body'] }}
+                {{ $movieDetails['body'] ?? ''}}
             </div>
         </div>
     </div>

@@ -9,16 +9,16 @@
                 <div class="col-12 col-sm-6 mb-3">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="card-title"><?= $item['headline'] ?></h3>
-                            <p class="card-text">{!! Str::limit($item['synopsis'], 150, ' ...') !!}</p>
+                            <h3 class="card-title">{{ $item['headline']  ?? ''}}</h3>
+                            <p class="card-text">{{ Str::limit($item['synopsis'], 150, ' ...')  ?? ''}}</p>
                             <div class="d-flex mb-1"><strong
-                                        class="mr-3">Director: </strong> <?= $item['directors'][0]['name'] ?></div>
+                                        class="mr-3">Director: </strong> {{ $item['directors'][0]['name']  ?? ''}}</div>
                             <div class="mb-3"><strong class="mr-3">Casting: </strong>
                                 @foreach($item['cast'] as $cast)
-                                    <span><?= $cast['name'] ?>,</span>
+                                    <span>{{ $cast['name'] }},</span>
                                 @endforeach
                             </div>
-                            <a href="\movie\{{$key}}" class="btn btn-success">See more</a>
+                            <a href="\movie\{{$key}}" class="btn btn-primary">See more</a>
                         </div>
                     </div>
                 </div>

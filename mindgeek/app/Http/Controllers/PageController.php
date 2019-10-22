@@ -33,25 +33,6 @@ class PageController extends Controller
         $movieKey = request('movie_id');
         $items = $jsonParser->getJsonFromUrl();
 
-        $transformedDuration = $this->convertToHoursMins($items[$movieKey]['duration'], '%02d hours %02d minutes');
-
-        return view('movie', ['movieDetails' => $items[$movieKey], 'duration' => $transformedDuration]);
-    }
-
-    /**
-     * Format duration time into more readable way
-     *
-     * @param $time
-     * @param string $format
-     * @return string|void
-     */
-    function convertToHoursMins($time, $format = '%02d:%02d')
-    {
-        if ($time < 1) {
-            return;
-        }
-        $hours = floor($time / 3600);
-        $minutes = (($time / 60) - ($hours * 60));
-        return sprintf($format, $hours, $minutes);
+        return view('movie', ['movieDetails' => $items[$movieKey]]);
     }
 }

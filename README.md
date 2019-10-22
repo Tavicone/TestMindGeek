@@ -16,10 +16,11 @@ git clone git@github.com:OctavianLelescu/TestMindGeek.git
 
 #### Go to folder mindgeek and update application packages and dependencies
 ```bash
+cd TestMindGeek/
 cd mindgeek/
 composer install
 ```
-#### Change the file .env.example to .env
+--> Change the file **.env.example** to **.env**
 
 #### Add the cripting key for laravel
 ```bash

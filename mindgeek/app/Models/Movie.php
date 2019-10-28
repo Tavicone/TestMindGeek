@@ -37,7 +37,7 @@ class Movie extends Model
      */
     public function directors()
     {
-        return $this->hasMany('App\Models\Director');
+        return $this->hasMany('App\Models\Director','movie_id', 'id');
     }
 
     /**
@@ -45,7 +45,7 @@ class Movie extends Model
      */
     public function genre()
     {
-        return $this->hasMany('App\Models\Genre');
+        return $this->hasMany('App\Models\Genre','movie_id', 'id');
     }
 
     /**
@@ -53,7 +53,7 @@ class Movie extends Model
      */
     public function cast()
     {
-        return $this->hasMany('App\Models\Cast');
+        return $this->hasMany('App\Models\Cast','movie_id', 'id');
     }
     /*
     |--------------------------------------------------------------------------

@@ -65,4 +65,8 @@ class ParseJsonFile
         }
 
     }
+
+    public function saveJsonData() {
+        return $this->jsonUrl;
+    }
 }

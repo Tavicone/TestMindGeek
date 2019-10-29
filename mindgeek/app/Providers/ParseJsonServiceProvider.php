@@ -17,6 +17,11 @@ class ParseJsonServiceProvider extends ServiceProvider
         $this->app->bind('App\Services\ParseJsonFile', function () {
             return new ParseJsonFile(env('JSONURL'));
         });
+
+        $this->app->bind(
+            'App\Repositories\MovieRepositoryInterface',
+            'App\Repositories\MovieRepository'
+        );
     }
 
     /**

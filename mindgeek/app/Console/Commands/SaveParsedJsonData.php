@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\ParseJsonFile;
+use JsonMachine\JsonMachine;
 
 class SaveParsedJsonData extends Command
 {
@@ -35,16 +36,21 @@ class SaveParsedJsonData extends Command
     }
 
     /**
-     * Execute the console command.
-     *
-     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function handle()
     {
         $this->jsonParser->setJsonUrl($this->argument('url'));
 
-        $zzz = $this->jsonParser->saveJsonData();
+        $jsonData = $this->jsonParser->getJsonFromUrl();
 
-        $this->info($zzz);
+        foreach (JsonMachine::fromStream($jsonData) as $key => $value) {
+//            var_dump([$key, $value]);
+            $this->info($value);
+
+            die();
+        }
+
+//        $this->info($zzz);
     }
 }

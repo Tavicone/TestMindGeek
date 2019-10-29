@@ -47,6 +47,6 @@ class MovieRepository implements MovieRepositoryInterface
      */
     public function update($movie_id, array $movie_data)
     {
-        Movie::find($movie_id)->update($movie_data);
+        Movie::firstOrNew(['external_id' => $movie_id]);
     }
 }

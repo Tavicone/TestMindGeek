@@ -16,7 +16,7 @@ class Movie extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+     protected $fillable = ['external_id', 'headline', 'year', 'body', 'synopsis', 'duration', 'rating'];
     // protected $hidden = [];
     // protected $dates = [];
 

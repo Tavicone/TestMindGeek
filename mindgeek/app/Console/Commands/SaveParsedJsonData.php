@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Repositories\MovieRepositoryInterface;
 use Illuminate\Console\Command;
 use App\Services\ParseJsonFile;
 use JsonMachine\JsonMachine;
@@ -23,16 +24,18 @@ class SaveParsedJsonData extends Command
     protected $description = 'Save data into DB from parsed json file';
 
     protected $jsonParser;
+    private $movie;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct(ParseJsonFile $jsonParser)
+    public function __construct(ParseJsonFile $jsonParser, MovieRepositoryInterface $movie)
     {
         parent::__construct();
         $this->jsonParser = $jsonParser;
+        $this->movie = $movie;
     }
 
     /**
@@ -44,13 +47,10 @@ class SaveParsedJsonData extends Command
 
         $jsonData = $this->jsonParser->getJsonFromUrl();
 
-        foreach (JsonMachine::fromStream($jsonData) as $key => $value) {
-//            var_dump([$key, $value]);
-            $this->info($value);
+        foreach ($jsonData as $data) {
+            $id = $this->movie->update($data);
 
-            die();
+            $this->info($id);
         }
-
-//        $this->info($zzz);
     }
 }

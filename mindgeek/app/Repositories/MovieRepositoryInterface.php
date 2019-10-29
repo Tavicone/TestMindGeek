@@ -11,24 +11,23 @@ interface MovieRepositoryInterface
     public function get($movie_id);
 
     /**
-     * Get's all posts.
+     * Get's all movie.
      *
      * @return mixed
      */
     public function all();
 
     /**
-     * Deletes a post.
+     * Deletes a movie.
      *
      * @param int
      */
     public function delete($movie_id);
 
     /**
-     * Updates a post.
+     * Updates a movie.
      *
-     * @param int
      * @param array
      */
-    public function update($movie_id, array $movie_data);
+    public function update(array $movie_data);
 }

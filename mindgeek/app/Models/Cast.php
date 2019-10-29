@@ -16,7 +16,7 @@ class Cast extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['movie_id', 'cast_name'];
     // protected $hidden = [];
     // protected $dates = [];
 

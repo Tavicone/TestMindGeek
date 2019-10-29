@@ -16,7 +16,7 @@ class Director extends Model
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-    // protected $fillable = [];
+    protected $fillable = ['movie_id', 'director_name'];
     // protected $hidden = [];
     // protected $dates = [];
 

@@ -14,6 +14,7 @@ class CreateMovieCastTable extends Migration
     public function up()
     {
         Schema::create('movie_cast', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('movie_id');
             $table->string('cast_name');
             $table->timestamps();

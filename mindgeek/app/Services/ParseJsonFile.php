@@ -4,6 +4,7 @@ namespace App\Services;
 
 use GuzzleHttp;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class ParseJsonFile
 {
@@ -48,9 +49,17 @@ class ParseJsonFile
      */
     public function getJsonFromUrl()
     {
-        $client = new GuzzleHttp\Client(['verify' => base_path() . '/cacert.pem']);
-        $response = $client->request('GET', $this->jsonUrl);
-        $result = json_decode(mb_convert_encoding($response->getBody()->getContents(), "UTF-8"), true);
+        try {
+            $client = new GuzzleHttp\Client(['verify' => base_path() . '/cacert.pem']);
+            $response = $client->request('GET', $this->jsonUrl);
+            if ($response->getStatusCode() == 200) {
+                $result = json_decode(mb_convert_encoding($response->getBody()->getContents(), "UTF-8"), true);
+            } else {
+                Log::error('Json unable to be decoded!');
+            }
+        } catch (GuzzleHttp\Exception\ClientException $exception) {
+            Log::error($exception->getMessage());
+        }
 
         return $result;
     }

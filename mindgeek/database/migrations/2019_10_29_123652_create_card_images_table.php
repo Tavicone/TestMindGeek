@@ -14,10 +14,11 @@ class CreateCardImagesTable extends Migration
     public function up()
     {
         Schema::create('card_images', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('movie_id');
             $table->string('url');
-            $table->string('height');
-            $table->string('width');
+            $table->string('height')->nullable();
+            $table->string('width')->nullable();
             $table->timestamps();
         });
 

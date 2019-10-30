@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Repositories;
 
 
@@ -60,37 +61,61 @@ class MovieRepository implements MovieRepositoryInterface
         $movie->save();
 
         // Save director
-        if(isset($movie_data['directors'])) {
+        if (isset($movie_data['directors'])) {
             foreach ($movie_data['directors'] as $director) {
-                Director::create(['movie_id' => $movie->id, 'director_name' => $director['name']]);
+                $directorDB = Director::firstOrCreate([
+                    'movie_id' => $movie->id,
+                    'director_name' => $director['name']
+                ]);
+                $directorDB->save();
             }
         }
 
         // Save cast
-        if(isset($movie_data['cast'])) {
+        if (isset($movie_data['cast'])) {
             foreach ($movie_data['cast'] as $cast) {
-                Cast::create(['movie_id' => $movie->id, 'cast_name' => $cast['name']]);
+                $castDB = Cast::firstOrCreate([
+                    'movie_id' => $movie->id,
+                    'cast_name' => $cast['name']
+                ]);
+                $castDB->save();
             }
         }
 
         // Save Genre
-        if(isset($movie_data['genres'])) {
-            foreach ($movie_data['genres'] as $genre){
-                Genre::create(['movie_id' => $movie->id, 'genre_name' => $genre]);
+        if (isset($movie_data['genres'])) {
+            foreach ($movie_data['genres'] as $genre) {
+                $genreDB = Genre::firstOrCreate([
+                    'movie_id' => $movie->id,
+                    'genre_name' => $genre
+                ]);
+                $genreDB->save();
             }
         }
 
         // Save Card images
-        if(isset($movie_data['cardImages'])) {
-            foreach ($movie_data['cardImages'] as $image){
-                CardImage::create(['movie_id' => $movie->id, 'url' => $image['url'], 'height' => $image['h'], 'width' => $image['w']]);
+        if (isset($movie_data['cardImages'])) {
+            foreach ($movie_data['cardImages'] as $image) {
+                $imageDB = CardImage::firstOrCreate([
+                    'movie_id' => $movie->id,
+                    'url' => $image['url']
+                ]);
+                $imageDB->height = $image['h'] ?? null;
+                $imageDB->width = $image['w'] ?? null;
+                $imageDB->save();
             }
         }
 
         // Save key art images
-        if(isset($movie_data['keyArtImages'])) {
-            foreach ($movie_data['keyArtImages'] as $image){
-                KeyArtImage::create(['movie_id' => $movie->id, 'url' => $image['url'], 'height' => $image['h'], 'width' => $image['w']]);
+        if (isset($movie_data['keyArtImages'])) {
+            foreach ($movie_data['keyArtImages'] as $artImage) {
+                $artImageDB = KeyArtImage::firstOrCreate([
+                    'movie_id' => $movie->id,
+                    'url' => $artImage['url']
+                ]);
+                $artImageDB->height = $artImage['h'] ?? null;
+                $artImageDB->width = $artImage['w'] ?? null;
+                $artImageDB->save();
             }
         }
 

@@ -12,9 +12,8 @@ Application based on Laravel 6.2 framework
 #### Prerequisites:
 
 PHP 7.2+
-
-#### Installation with Composer:
-###### *you need to have the latest composer version installed
+MySQL
+Composer
 
 #### Clone the project files
 ```bash

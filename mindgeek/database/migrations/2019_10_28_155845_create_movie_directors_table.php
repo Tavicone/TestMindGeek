@@ -14,6 +14,7 @@ class CreateMovieDirectorsTable extends Migration
     public function up()
     {
         Schema::create('movie_directors', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('movie_id');
             $table->string('director_name');
             $table->timestamps();

@@ -67,7 +67,7 @@
 
         <div class="row text-center text-lg-left mb-5">
             <div class="col-12">
-                {{ $movieDetails['body'] ?? ''}}
+                {{ $movieDetails->body ?? ''}}
             </div>
         </div>
     </div>

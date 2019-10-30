@@ -54,9 +54,4 @@ class ParseJsonFile
 
         return $result;
     }
-
-    public function saveJsonData()
-    {
-        return $this->jsonUrl;
-    }
 }

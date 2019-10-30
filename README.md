@@ -34,6 +34,12 @@ composer install
 php artisan key:generate
 ```
 
+#### Create a database laravel_test (using WAMP XAMPP or any other program you have) then save info into db by executing the commands below
+```bash
+php artisan migrate
+php artisan parsedJsonData:save https://mgtechtest.blob.core.windows.net/files/showcase.json
+```
+
 #### Need to link the storage disk to be able to save images from json file
 ```bash
 php artisan storage:link

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\MovieRepositoryInterface;
-use App\Services\ParseJsonFile;
 
 class PageController extends Controller
 {
@@ -27,7 +26,6 @@ class PageController extends Controller
      */
     function showMovieDetails(MovieRepositoryInterface $movie)
     {
-//        dd($movie->get(request('movie_id')));
         return view('movie', ['movieDetails' => $movie->get(request('movie_id'))]);
     }
 }

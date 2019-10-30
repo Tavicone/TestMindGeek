@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCardImagesTable extends Migration
+class CreateKeyArtImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCardImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('card_images', function (Blueprint $table) {
+        Schema::create('key_art_images', function (Blueprint $table) {
             $table->string('movie_id');
             $table->string('url');
             $table->string('height');
@@ -21,7 +21,7 @@ class CreateCardImagesTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('card_images', function (Blueprint $table) {
+        Schema::table('key_art_images', function (Blueprint $table) {
             $table->foreign('movie_id')
                 ->references('id')
                 ->on('movies')
@@ -36,6 +36,6 @@ class CreateCardImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('card_images');
+        Schema::dropIfExists('key_art_images');
     }
 }

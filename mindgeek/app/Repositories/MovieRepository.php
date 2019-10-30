@@ -4,9 +4,11 @@ namespace App\Repositories;
 
 namespace App\Repositories;
 
+use App\Models\CardImage;
 use App\Models\Cast;
 use App\Models\Director;
 use App\Models\Genre;
+use App\Models\KeyArtImage;
 use App\Models\Movie;
 
 class MovieRepository implements MovieRepositoryInterface
@@ -46,7 +48,7 @@ class MovieRepository implements MovieRepositoryInterface
      * @param array $movie_data
      * @return mixed
      */
-    public function update(array $movie_data)
+    public function save(array $movie_data)
     {
         $movie = Movie::firstOrNew(['external_id' => $movie_data['id']]);
         $movie->headline = $movie_data['headline'] ?? null;
@@ -75,6 +77,20 @@ class MovieRepository implements MovieRepositoryInterface
         if(isset($movie_data['genres'])) {
             foreach ($movie_data['genres'] as $genre){
                 Genre::create(['movie_id' => $movie->id, 'genre_name' => $genre]);
+            }
+        }
+
+        // Save Card images
+        if(isset($movie_data['cardImages'])) {
+            foreach ($movie_data['cardImages'] as $image){
+                CardImage::create(['movie_id' => $movie->id, 'url' => $image['url'], 'height' => $image['h'], 'width' => $image['w']]);
+            }
+        }
+
+        // Save key art images
+        if(isset($movie_data['keyArtImages'])) {
+            foreach ($movie_data['keyArtImages'] as $image){
+                KeyArtImage::create(['movie_id' => $movie->id, 'url' => $image['url'], 'height' => $image['h'], 'width' => $image['w']]);
             }
         }
 

@@ -48,7 +48,7 @@ class SaveParsedJsonData extends Command
         $jsonData = $this->jsonParser->getJsonFromUrl();
 
         foreach ($jsonData as $data) {
-            $id = $this->movie->update($data);
+            $id = $this->movie->save($data);
 
             $this->info($id);
         }

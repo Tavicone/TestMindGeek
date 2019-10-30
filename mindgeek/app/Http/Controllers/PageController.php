@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\MovieRepositoryInterface;
 use App\Services\ParseJsonFile;
 
 class PageController extends Controller
@@ -10,29 +11,23 @@ class PageController extends Controller
     /**
      * Display movie list
      *
-     * @param ParseJsonFile $jsonParser
+     * @param MovieRepositoryInterface $movie
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function homepage(ParseJsonFile $jsonParser)
+    function homepage(MovieRepositoryInterface $movie)
     {
-        $items = $jsonParser->getJsonFromUrl();
-
-        return view('home', ['items' => $items]);
+        return view('home', ['items' => $movie->all()]);
     }
 
     /**
      * Display movie details
      *
-     * @param ParseJsonFile $jsonParser
+     * @param MovieRepositoryInterface $movie
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    function showMovieDetails(ParseJsonFile $jsonParser)
+    function showMovieDetails(MovieRepositoryInterface $movie)
     {
-        $movieKey = request('movie_id');
-        $items = $jsonParser->getJsonFromUrl();
-
-        return view('movie', ['movieDetails' => $items[$movieKey]]);
+//        dd($movie->get(request('movie_id')));
+        return view('movie', ['movieDetails' => $movie->get(request('movie_id'))]);
     }
 }

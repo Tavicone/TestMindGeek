@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Movie extends Model
+class CardImage extends Model
 {
     /*
     |--------------------------------------------------------------------------
@@ -12,11 +12,11 @@ class Movie extends Model
     |--------------------------------------------------------------------------
     */
 
-    protected $table = 'movies';
+    protected $table = 'card_images';
     // protected $primaryKey = 'id';
     // public $timestamps = false;
     // protected $guarded = ['id'];
-     protected $fillable = ['external_id', 'headline', 'year', 'body', 'synopsis', 'duration', 'rating'];
+     protected $fillable = ['movie_id', 'url', 'height', 'width'];
     // protected $hidden = [];
     // protected $dates = [];
 
@@ -33,43 +33,11 @@ class Movie extends Model
     */
 
     /**
-     * Get the directors for that movie.
+     * Get the movie that belongs to.
      */
-    public function directors()
+    public function movie()
     {
-        return $this->hasMany('App\Models\Director','movie_id', 'id');
-    }
-
-    /**
-     * Get the genres for that movie.
-     */
-    public function genre()
-    {
-        return $this->hasMany('App\Models\Genre','movie_id', 'id');
-    }
-
-    /**
-     * Get the casts for that movie.
-     */
-    public function cast()
-    {
-        return $this->hasMany('App\Models\Cast','movie_id');
-    }
-
-    /**
-     * Get the cardImages for that movie.
-     */
-    public function cardImage()
-    {
-        return $this->hasMany('App\Models\CardImage','movie_id');
-    }
-
-    /**
-     * Get the cardImages for that movie.
-     */
-    public function keyArtImage()
-    {
-        return $this->hasMany('App\Models\KeyArtImage','movie_id');
+        return $this->belongsTo('App\Models\Movie', 'movie_id');
     }
 
     /*

@@ -25,9 +25,9 @@ interface MovieRepositoryInterface
     public function delete($movie_id);
 
     /**
-     * Updates a movie.
+     * Save a movie.
      *
      * @param array
      */
-    public function update(array $movie_data);
+    public function save(array $movie_data);
 }

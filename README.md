@@ -5,6 +5,9 @@ How you display the feed and how many layers/pages you use is up to you, but ple
 
 Please ensure all code is tested before sending it back, it would be good to also see unit tests too. Ideally, alongside supplying the code base and all packages/libraries required to deploy, you will also have to supply deployment instructions too.
 
+#### Test output can be seen at:
+http://laravel.4myapps.com/
+
 #### Framework
 
 Application based on Laravel 6.2 framework

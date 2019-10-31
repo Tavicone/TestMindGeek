@@ -32,7 +32,7 @@ class MovieRepository implements MovieRepositoryInterface
      */
     public function all()
     {
-        return Movie::all();
+        return Movie::paginate(4);
     }
 
     /**

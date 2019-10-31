@@ -46,7 +46,7 @@
                 <div class="col-lg-3 col-md-4 col-6">
                     <a href="#" class="d-block mb-4 h-100">
                         <img class="img-fluid img-thumbnail"
-                             src="{{ App\Libraries\ImageStore::getImageFromUrl($keyImage['url']) }}" alt="">
+                             src="{{ App\Libraries\ImageStore::getImageFromUrl($keyImage->url) }}" alt="">
                     </a>
                 </div>
             @endforeach

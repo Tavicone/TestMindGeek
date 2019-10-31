@@ -3,9 +3,15 @@
 @section('content')
     <!-- Main Info -->
     <div class="container">
-        <a href="\" class="btn btn-primary btn-sm mt-1">Back to list</a>
-        <h1 class="text-center font-weight-bold">{{ $movieDetails->headline ?? ''}}</h1>
-        <h3 class="text-center">({{$movieDetails->year ?? ''}})</h3>
+        <div class="row mt-3">
+            <div class="col-10">
+                <h1 class="text-center font-weight-bold">{{ $movieDetails->headline ?? ''}}</h1>
+                <h3 class="text-center">({{$movieDetails->year ?? ''}})</h3>
+            </div>
+            <div class="col-2 text-right">
+                <a href="\" class="btn btn-primary btn-sm mt-3">Back to list</a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 {{ $movieDetails->synopsis ?? ''}}
